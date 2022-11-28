@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { pickOne } from '../helpers/helpers';
-import { chromaticScale, trebleRange } from '../constants/musicConstants';
+import { bassRange, chromaticScale, trebleRange } from '../constants/musicConstants';
 import Stave from './Stave';
 import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
@@ -9,10 +9,13 @@ import TitleButton from './TitleButton';
 
 const Question = () => {
     const [notes, setNotes] = React.useState([]);
-    const [clef, setClef] = React.useState('treble');
+    const [clef, setClef] = React.useState('bass');
+    const [displayAnswer, setDisplayAnswer] = React.useState(false)
 
     const generateNote = () => {
-        const note1 = new Note(pickOne(chromaticScale), pickOne(trebleRange))
+        setDisplayAnswer(false);
+
+        const note1 = new Note(pickOne(chromaticScale), pickOne(bassRange))
         setNotes([note1])
     }
 
@@ -24,8 +27,13 @@ const Question = () => {
         <View style={styles.container}>
             {notes.length > 0 ? <Stave {...{ notes, clef }} /> : <></>}
 
-            <Text>Here's where the question will go</Text>
-            <TitleButton title="new note" onPress={() => generateNote()} />
+            {displayAnswer ?
+                <>
+                    <TitleButton title="New Question" onPress={() => generateNote()} />
+                    <Text style={styles.answer}>{notes[0].name}</Text>
+                </>
+                : <TitleButton title="Show Answer" onPress={() => setDisplayAnswer(true)} />
+            }
         </View>
     );
 };
@@ -36,6 +44,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    answer: {
+        marginTop: 16,
+        fontSize: 32,
+        justifyContent: 'center',
+        alignItems: 'center',
+        color: 'black',
+    }
 });
 
 export default Question;

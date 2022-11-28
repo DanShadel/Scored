@@ -28,11 +28,13 @@ const Stave = ({ clef, notes }) => {
             staveNote = new Vex.Flow.StaveNote({
                 keys: [note.name + '/' + note.range],
                 duration: 'q',
+                clef: clef
             })
         } else {
             staveNote = new Vex.Flow.StaveNote({
                 keys: [note.name + '/' + note.range],
                 duration: 'q',
+                clef: clef
             });
         }
 

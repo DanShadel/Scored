@@ -2,7 +2,7 @@ export const clefs = ['treble', 'bass']
 
 // Note Ranges on each clef (kinda)
 export const trebleRange = [4, 5]
-export const bassRange = [2, 3, 4]
+export const bassRange = [2, 3,]
 
 // Scales
 export const chromaticScale = ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab']
