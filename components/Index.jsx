@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const Learn = () => {
+const Index = () => {
     return (
         <View style={styles.container}>
-            <Text>Learn</Text>
+            <Text>Index</Text>
         </View>
     );
 };
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Learn;
+export default Index;

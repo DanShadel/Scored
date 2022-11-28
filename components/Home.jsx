@@ -12,9 +12,10 @@ const Home = ({ navigation }) => {
             </View>
             <View style={styles.buttonContainer}>
                 <TitleButton title={"Learn"} onPress={() => { navigation.navigate('Learn') }} disabled={true} />
-                <TitleButton title={"Practice"} onPress={() => { navigation.navigate('Quiz') }} />
+                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('Quiz') }} />
                 <TitleButton title={"Metronome"} onPress={() => { navigation.navigate('Metronome') }} disabled={true} />
                 <TitleButton title={"Tuner"} onPress={() => { navigation.navigate('Tuner') }} disabled={true} />
+                <TitleButton title={"Index"} onPress={() => { navigation.navigate('Index') }} disabled={true} />
             </View>
         </>
     );
