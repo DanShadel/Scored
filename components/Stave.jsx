@@ -20,41 +20,29 @@ const Stave = ({ clef, notes }) => {
     const width = 300;
     const [context, stave] = generateContext(clef, width);
 
-
     let staveNotes = []
-
-    // React.useEffect(() => {
     staveNotes = notes.map(note => {
         const { letter, mods } = note.getNoteMods();
-        const staveNote = new Vex.Flow.StaveNote({
-            keys: [note.name + '/' + note.range],
-            duration: 'q',
-            clef: 'treble'
-        });
-
-        if (mods) {
-            console.log(staveNote.keys)
-            console.log(mods)
-            const accidental = new Vex.Flow.Accidental("#");
-            console.log(accidental)
-            staveNote.addModifier(accidental);
+        let staveNote
+        if (mods) { // no work :(
+            staveNote = new Vex.Flow.StaveNote({
+                keys: [note.name + '/' + note.range],
+                duration: 'q',
+            })
+        } else {
+            staveNote = new Vex.Flow.StaveNote({
+                keys: [note.name + '/' + note.range],
+                duration: 'q',
+            });
         }
+
         return staveNote;
     });
 
-
-    console.log('staveNotes:')
-    console.log(staveNotes[0].keys)
-
     const voice = new Vex.Flow.Voice({ num_beats: 1, beat_value: 4 });
-    console.log(staveNotes)
     voice.addTickables(staveNotes);
-
     new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 300)
-
     voice.draw(context, stave)
-    // }, [notes])
-
 
     return (
         <View >
