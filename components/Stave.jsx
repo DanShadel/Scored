@@ -23,7 +23,7 @@ const Stave = ({ clef, notes }) => {
     staveNotes = notes.map(note => {
         const { letter, mods } = note.getNoteMods();
         let staveNote
-        if (mods) { // no work :(
+        if (mods) {
             staveNote = new Vex.Flow.StaveNote({
                 keys: [note.name + '/' + note.range],
                 duration: 'q',
@@ -46,7 +46,6 @@ const Stave = ({ clef, notes }) => {
     voice.addTickables(staveNotes);
     new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 300)
     voice.draw(context, stave)
-    context.scale(2, 2)
 
     return (
         <View >
