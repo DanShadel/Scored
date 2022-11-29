@@ -5,14 +5,13 @@ import Vex from 'vexflow';
 
 const generateContext = (clef, width) => {
     const context = new ReactNativeSVGContext(NotoFontPack, {
-        width: 300,
+        width: 100,
         height: 300,
     });
     const stave = new Vex.Flow.Stave(0, 0, width);
     stave.setContext(context);
     stave.setClef(clef);
     stave.draw();
-
     return [context, stave];
 }
 
@@ -47,6 +46,7 @@ const Stave = ({ clef, notes }) => {
     voice.addTickables(staveNotes);
     new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 300)
     voice.draw(context, stave)
+    context.scale(2, 2)
 
     return (
         <View >
