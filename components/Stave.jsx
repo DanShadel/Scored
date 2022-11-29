@@ -29,7 +29,9 @@ const Stave = ({ clef, notes }) => {
                 keys: [note.name + '/' + note.range],
                 duration: 'q',
                 clef: clef
-            })
+            }).addAccidental(0, new Vex.Flow.Accidental(mods))
+
+            console.log(mods)
         } else {
             staveNote = new Vex.Flow.StaveNote({
                 keys: [note.name + '/' + note.range],
