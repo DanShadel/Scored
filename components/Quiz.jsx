@@ -1,25 +1,24 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Question from './Question';
+import TitleButton from './TitleButton';
 
-// create a component
-const Quiz = () => {
+const Quiz = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text>Quiz</Text>
+            <Text> Select a clef to practice </Text>
+            <TitleButton title="Treble" onPress={() => navigation.navigate('Question', { clef: 'treble' })} />
+            <TitleButton title="Bass" onPress={() => navigation.navigate('Question', { clef: 'bass' })} />
         </View>
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
     },
 });
 
-//make this component available to the app
 export default Quiz;
