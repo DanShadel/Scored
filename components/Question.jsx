@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { pickOne } from '../helpers/helpers';
-import { bassRange, chromaticScale, trebleRange } from '../constants/musicConstants';
+import { bassRange, chromaticScale, chromaticScaleAllVariations, trebleRange } from '../constants/musicConstants';
 import Stave from './Stave';
 import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
@@ -17,7 +17,7 @@ const Question = ({ navigation, route }) => {
         setDisplayAnswer(false);
         console.log(clef)
         const range = getRangeByClef(clef);
-        const note1 = new Note(pickOne(chromaticScale), pickOne(range))
+        const note1 = new Note(pickOne(chromaticScaleAllVariations), pickOne(range))
         setNotes([note1])
     }
 
