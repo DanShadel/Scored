@@ -8,7 +8,7 @@ export const getNoteMods = (note) => {
     return ({ name: note.charAt(0), mods: note.charAt(1) })
 }
 
-getRangeByClef = (clef) => {
+export const getRangeByClef = (clef) => {
     if (clef === 'treble') {
         return trebleRange;
     } else if (clef = 'bass') {
@@ -17,3 +17,8 @@ getRangeByClef = (clef) => {
         return 'INVALID CLEF NAME'
     }
 }
+
+export const getTriad = (scale) => { return [scale[0], scale[2], scale[4]] }
+
+
+

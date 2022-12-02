@@ -2,10 +2,11 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { NotoFontPack, ReactNativeSVGContext } from 'standalone-vexflow-context';
 import Vex from 'vexflow';
+import { getNoteMods } from '../helpers/helpers';
 
 const generateContext = (clef, width) => {
     const context = new ReactNativeSVGContext(NotoFontPack, {
-        width: 100,
+        width,
         height: 300,
     });
     const stave = new Vex.Flow.Stave(0, 0, width);
@@ -15,37 +16,37 @@ const generateContext = (clef, width) => {
     return [context, stave];
 }
 
-const Stave = ({ clef, notes }) => {
-    const width = 300;
+
+const drawOneBeat = (clef, notes) => {
+    const width = 100;
     const [context, stave] = generateContext(clef, width);
+    console.log(notes.map(note => note.name + '/' + note.range))
+    const tick = [new Vex.Flow.StaveNote({
+        keys: notes.map(note => note.name + '/' + note.range),
+        duration: 'q',
+        clef: clef
+    })];
 
-    let staveNotes = []
-    staveNotes = notes.map(note => {
-        const { letter, mods } = note.getNoteMods();
-        let staveNote
+    notes.forEach((note, index) => {
+        const { mods } = note.getNoteMods();
         if (mods) {
-            staveNote = new Vex.Flow.StaveNote({
-                keys: [note.name + '/' + note.range],
-                duration: 'q',
-                clef: clef
-            }).addAccidental(0, new Vex.Flow.Accidental(mods))
-
-            console.log(mods)
-        } else {
-            staveNote = new Vex.Flow.StaveNote({
-                keys: [note.name + '/' + note.range],
-                duration: 'q',
-                clef: clef
-            });
+            tick[0].addAccidental(index, new Vex.Flow.Accidental(mods));
         }
+    })
 
-        return staveNote;
-    });
-
+    console.log(tick)
     const voice = new Vex.Flow.Voice({ num_beats: 1, beat_value: 4 });
-    voice.addTickables(staveNotes);
+    voice.addTickables(tick);
     new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 300)
     voice.draw(context, stave)
+
+    return { context, stave };
+}
+
+const Stave = ({ clef, notes }) => {
+
+    const { context, stave } = drawOneBeat(clef, notes);
+
 
     return (
         <View >

@@ -1,9 +1,7 @@
-//import liraries
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import TitleButton from './TitleButton';
 
-// create a component
 const Home = ({ navigation }) => {
     return (
         <>
@@ -21,7 +19,6 @@ const Home = ({ navigation }) => {
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     titleContainer: {
         flex: 2,
@@ -36,10 +33,9 @@ const styles = StyleSheet.create({
     },
 
     buttonContainer: {
-        flex: 3,
+        flex: 4,
         alignItems: 'center',
     }
 });
 
-//make this component available to the app
 export default Home;
