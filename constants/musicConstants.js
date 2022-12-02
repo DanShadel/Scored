@@ -5,8 +5,8 @@ export const trebleRange = [4, 5]
 export const bassRange = [2, 3,]
 
 // Scales
-export const chromaticScale = ['A', 'Bb', 'B', 'C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab']
-export const chromaticScaleAllVariations = ['A', 'Ab', 'A#', 'B', 'Bb', 'C', 'C#', 'D', 'Db', 'D#', 'E', 'Eb', 'F', 'F#', 'G', 'Gb', 'G#']
+export const chromaticScale = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+export const chromaticScaleAllVariations = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B',]
 export const CMaj = ['C', 'D', 'E', 'F', 'G', 'A', 'B', 'C']
 export const GMaj = ['G', 'A', 'B', 'C', 'D', 'E', 'F#', 'G']
 export const DMaj = ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D']

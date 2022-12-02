@@ -21,6 +21,7 @@ export default App = () => {
         {/* TODO: Change components */}
         <Stack.Screen name="Metronome" component={Home} />
         <Stack.Screen name="Tuner" component={Home} />
+        {/* End TODO */}
         <Stack.Screen name="IndexClefSelection" component={Clef} initialParams={{ path: 'Index' }} />
         <Stack.Screen name="IndexList" component={IndexList} />
         <Stack.Screen name="Index" component={Index} />
