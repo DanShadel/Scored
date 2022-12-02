@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import Clef from './Clef';
 import Question from './Question';
-import TitleButton from './TitleButton';
 
-const Quiz = ({ navigation }) => {
+const Quiz = () => {
     return (
-        <View style={styles.container}>
-            <Text> Select a clef to practice </Text>
-            <TitleButton title="Treble" onPress={() => navigation.navigate('Question', { clef: 'treble' })} />
-            <TitleButton title="Bass" onPress={() => navigation.navigate('Question', { clef: 'bass' })} />
-        </View>
+        <> </>
     );
 };
 

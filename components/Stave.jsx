@@ -1,8 +1,7 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { NotoFontPack, ReactNativeSVGContext } from 'standalone-vexflow-context';
 import Vex from 'vexflow';
-import { getNoteMods } from '../helpers/helpers';
 
 const generateContext = (clef, width) => {
     const context = new ReactNativeSVGContext(NotoFontPack, {
@@ -16,11 +15,9 @@ const generateContext = (clef, width) => {
     return [context, stave];
 }
 
-
 const drawOneBeat = (clef, notes) => {
     const width = 100;
     const [context, stave] = generateContext(clef, width);
-    console.log(notes.map(note => note.name + '/' + note.range))
     const tick = [new Vex.Flow.StaveNote({
         keys: notes.map(note => note.name + '/' + note.range),
         duration: 'q',
@@ -34,7 +31,6 @@ const drawOneBeat = (clef, notes) => {
         }
     })
 
-    console.log(tick)
     const voice = new Vex.Flow.Voice({ num_beats: 1, beat_value: 4 });
     voice.addTickables(tick);
     new Vex.Flow.Formatter().joinVoices([voice]).format([voice], 300)
@@ -44,9 +40,7 @@ const drawOneBeat = (clef, notes) => {
 }
 
 const Stave = ({ clef, notes }) => {
-
     const { context, stave } = drawOneBeat(clef, notes);
-
 
     return (
         <View >

@@ -1,10 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import TitleButton from './TitleButton';
 
-const Index = () => {
+const Index = ({ navigation, route }) => {
+    const { clef } = route.params
     return (
         <View style={styles.container}>
-            <Text>Index</Text>
+            <TitleButton title="Notes" onPress={() => navigation.navigate('IndexList', { selection: 'notes', clef })} />
+            <TitleButton title="Chords" onPress={() => navigation.navigate('IndexList', { selection: 'chords', clef })} />
+            <TitleButton title="Scales" onPress={() => navigation.navigate('IndexList', { selection: 'scales', clef })} />
         </View>
     );
 };
@@ -14,7 +18,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
     },
 });
 

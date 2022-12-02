@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import TitleButton from './TitleButton';
 
 const Home = ({ navigation }) => {
@@ -10,10 +10,10 @@ const Home = ({ navigation }) => {
             </View>
             <View style={styles.buttonContainer}>
                 <TitleButton title={"Learn"} onPress={() => { navigation.navigate('Learn') }} disabled={true} />
-                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('Quiz') }} />
+                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('QuestionClefSelection') }} />
                 <TitleButton title={"Metronome"} onPress={() => { navigation.navigate('Metronome') }} disabled={true} />
                 <TitleButton title={"Tuner"} onPress={() => { navigation.navigate('Tuner') }} disabled={true} />
-                <TitleButton title={"Index"} onPress={() => { navigation.navigate('Index') }} disabled={true} />
+                <TitleButton title={"Index"} onPress={() => { navigation.navigate('IndexClefSelection') }} />
             </View>
         </>
     );
