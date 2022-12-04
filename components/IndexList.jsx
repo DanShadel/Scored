@@ -1,25 +1,37 @@
 import React from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { chordList, chromaticScaleAllVariations } from '../constants/musicConstants';
-import { getTriad } from '../helpers/helpers';
+import { scaleList, chromaticScaleAllVariations } from '../constants/musicConstants';
+import { getTriad, getTriadWithRange } from '../helpers/helpers';
 import HalfButton from './HalfButton';
 import IndexItem from './IndexItem';
 import { Note } from '../helpers/Note';
 
 const generateRows = (selection, clef, range) => {
-    let notes = []
+    let notes = [];
+    let nextOctave = false;
+
     if (selection === 'notes') {
-        return chromaticScaleAllVariations.map((note, index) => (<IndexItem key={index} label={note} notes={[new Note(note, range)]} clef={clef} />))
+        return chromaticScaleAllVariations.map((note, index) => (<IndexItem key={index} label={note} notes={[new Note(note, range)]} clef={clef} beats={1} />))
     } else if (selection === 'chords') {
-        // wrap up later
-        // return Object.keys(chordList).map((key, index) => (<IndexItem key={index} label={key} clef={clef} notes={getTriad(chordList[key])} />))
+        return Object.keys(scaleList).map((key, index) => {
+            notes = getTriadWithRange(scaleList[key], range).map((note) => (new Note(note.name, note.range)))
+            return (<IndexItem key={index} label={key} clef={clef} notes={notes} beats={1} />)
+        })
     } else if (selection === 'scales') {
-        // scales
+        return Object.keys(scaleList).map((scale, index) => {
+            console.log(scale)
+            notes = scaleList[scale].map((note, noteInd) => {
+                if (note[0] === 'C' && noteInd !== 0) {
+                    nextOctave = true;
+                }
+                const noteRange = nextOctave ? range + 1 : range
+                console.log(note, noteRange)
+                return (new Note(note, noteRange))
+            })
 
-    } else if (selection === 'keys') {
-        // Key Signatures
+            return (<IndexItem key={index} label={scale} clef={clef} notes={notes} beats={4} />)
+        })
     }
-
 }
 
 const IndexList = ({ route }) => {

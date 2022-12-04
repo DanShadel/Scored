@@ -26,12 +26,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: 'black'
     },
-
     titleText: {
         fontSize: 64,
         color: 'black',
     },
-
     buttonContainer: {
         flex: 4,
         alignItems: 'center',

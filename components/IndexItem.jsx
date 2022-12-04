@@ -2,16 +2,14 @@ import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Stave from './Stave';
 
-const IndexItem = ({ label, clef, notes }) => {
+const IndexItem = ({ label, clef, notes, beats }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}</Text>
-            <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View>
+            <View style={styles.stave}><Stave notes={notes} clef={clef} beats={beats} /></View>
         </View>
     );
 };
-
-
 
 const styles = StyleSheet.create({
     container: {
@@ -29,7 +27,6 @@ const styles = StyleSheet.create({
     stave: {
         height: 100
     }
-
 });
 
 export default IndexItem;

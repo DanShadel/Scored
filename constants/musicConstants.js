@@ -17,7 +17,7 @@ export const BbMaj = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb']
 export const EbMaj = ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb']
 export const AbMaj = ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab']
 
-export const chordList = {
+export const scaleList = {
     CMaj,
     GMaj,
     DMaj,

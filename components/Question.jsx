@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { getRandomChord, getRangeByClef, getTriad, pickOne } from '../helpers/helpers';
-import { bassRange, chromaticScale, chromaticScaleAllVariations, CMaj, trebleRange, chordList } from '../constants/musicConstants';
+import { bassRange, chromaticScale, chromaticScaleAllVariations, CMaj, trebleRange, scaleList } from '../constants/musicConstants';
 import Stave from './Stave';
 import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
@@ -40,7 +40,6 @@ const Question = ({ navigation, route }) => {
     }, [])
 
 
-    console.log(clef)
     return (
         <View style={styles.container}>
             {notes.length > 0 ? <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View> : <></>}
