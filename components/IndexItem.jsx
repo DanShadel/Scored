@@ -1,19 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Note } from '../helpers/Note';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Stave from './Stave';
-import { Dimensions } from 'react-native';
 
-const IndexItem = ({ label, range, clef }) => {
-
-    console.log(clef)
-    const notes = [new Note(label, range)];
-    console.log(notes)
-
+const IndexItem = ({ label, clef, notes }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}</Text>
-            <View style={styles.stave}><Stave {...{ notes, clef }} /></View>
+            <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View>
         </View>
     );
 };

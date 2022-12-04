@@ -18,8 +18,17 @@ const generateContext = (clef, width) => {
 const drawOneBeat = (clef, notes) => {
     const width = 100;
     const [context, stave] = generateContext(clef, width);
+
+    let nextOctave = false;
     const tick = [new Vex.Flow.StaveNote({
-        keys: notes.map(note => note.name + '/' + note.range),
+        keys: notes.map((note, index) => {
+            if (note.name[0] === 'C' && index !== 0) {
+                nextOctave = true;
+            }
+
+            const range = nextOctave ? note.range + 1 : note.range
+            return note.name + '/' + range
+        }),
         duration: 'q',
         clef: clef
     })];
@@ -39,8 +48,20 @@ const drawOneBeat = (clef, notes) => {
     return { context, stave };
 }
 
-const Stave = ({ clef, notes }) => {
-    const { context, stave } = drawOneBeat(clef, notes);
+const drawFourBeats = (clef, notes) => {
+
+}
+
+const Stave = ({ clef, notes, beats }) => {
+    let context, stave;
+    switch (beats) {
+        case 1:
+            ({ context, stave } = drawOneBeat(clef, notes));
+            break;
+        case 4:
+            // ({ context, stave } = drawFourBeats());
+            break;
+    }
 
     return (
         <View >

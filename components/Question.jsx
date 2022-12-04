@@ -39,9 +39,11 @@ const Question = ({ navigation, route }) => {
         generateNote();
     }, [])
 
+
+    console.log(clef)
     return (
         <View style={styles.container}>
-            {notes.length > 0 ? <View style={styles.stave}><Stave {...{ notes, clef }} /></View> : <></>}
+            {notes.length > 0 ? <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View> : <></>}
 
             {displayAnswer ?
                 <View style={styles.bottomContainer}>

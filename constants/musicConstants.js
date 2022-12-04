@@ -13,7 +13,7 @@ export const DMaj = ['D', 'E', 'F#', 'G', 'A', 'B', 'C#', 'D']
 export const AMaj = ['A', 'B', 'C#', 'D', 'E', 'F#', 'G#', 'A']
 export const EMaj = ['E', 'F#', 'G#', 'A', 'B', 'C#', 'D#', 'E']
 export const FMaj = ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F']
-export const BbMaj = ['F', 'G', 'A', 'Bb', 'C', 'D', 'E', 'F']
+export const BbMaj = ['Bb', 'C', 'D', 'Eb', 'F', 'G', 'A', 'Bb']
 export const EbMaj = ['Eb', 'F', 'G', 'Ab', 'Bb', 'C', 'D', 'Eb']
 export const AbMaj = ['Ab', 'Bb', 'C', 'Db', 'Eb', 'F', 'G', 'Ab']
 

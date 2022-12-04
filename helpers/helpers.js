@@ -8,7 +8,6 @@ export const getRandomChord = () => {
     const chords = Object.keys(chordList);
     const name = pickOne(chords);
 
-    console.log(chordList[name]);
     return { name: name, scale: chordList[name] }
 }
 
@@ -27,6 +26,3 @@ export const getRangeByClef = (clef) => {
 }
 
 export const getTriad = (scale) => { return [scale[0], scale[2], scale[4]] }
-
-
-
