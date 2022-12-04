@@ -1,9 +1,7 @@
-//import liraries
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import TitleButton from './TitleButton';
 
-// create a component
 const Home = ({ navigation }) => {
     return (
         <>
@@ -12,16 +10,15 @@ const Home = ({ navigation }) => {
             </View>
             <View style={styles.buttonContainer}>
                 <TitleButton title={"Learn"} onPress={() => { navigation.navigate('Learn') }} disabled={true} />
-                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('Quiz') }} />
+                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('QuestionClefSelection') }} />
                 <TitleButton title={"Metronome"} onPress={() => { navigation.navigate('Metronome') }} disabled={true} />
                 <TitleButton title={"Tuner"} onPress={() => { navigation.navigate('Tuner') }} disabled={true} />
-                <TitleButton title={"Index"} onPress={() => { navigation.navigate('Index') }} disabled={true} />
+                <TitleButton title={"Index"} onPress={() => { navigation.navigate('IndexClefSelection') }} />
             </View>
         </>
     );
 };
 
-// define your styles
 const styles = StyleSheet.create({
     titleContainer: {
         flex: 2,
@@ -29,17 +26,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         color: 'black'
     },
-
     titleText: {
         fontSize: 64,
         color: 'black',
     },
-
     buttonContainer: {
-        flex: 3,
+        flex: 4,
         alignItems: 'center',
     }
 });
 
-//make this component available to the app
 export default Home;
