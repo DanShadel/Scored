@@ -85,9 +85,26 @@ const drawScale = (clef, notes) => {
     return { context, stave };
 }
 
-const Stave = ({ clef, notes, beats }) => {
+const drawKeySignature = (clef, keySignature) => {
+    const width = 100;
+    const [context, stave] = generateContext(clef, width);
+
+    // figure out which key it is
+    console.log(keySignature)
+
+    stave.setKeySignature(keySignature)
+    stave.draw();
+
+
+    return { context, stave };
+}
+
+const Stave = ({ clef, notes, beats, keySignature }) => {
     let context, stave;
     switch (beats) {
+        case 0:
+            ({ context, stave } = drawKeySignature(clef, keySignature));
+            break;
         case 1:
             ({ context, stave } = drawOneBeat(clef, notes));
             break;

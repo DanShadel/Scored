@@ -2,11 +2,11 @@ import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import Stave from './Stave';
 
-const IndexItem = ({ label, clef, notes, beats }) => {
+const IndexItem = ({ label, clef, notes, beats, keySignature }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}</Text>
-            <View style={styles.stave}><Stave notes={notes} clef={clef} beats={beats} /></View>
+            <View style={styles.stave}><Stave notes={notes} clef={clef} beats={beats} keySignature={keySignature} /></View>
         </View>
     );
 };

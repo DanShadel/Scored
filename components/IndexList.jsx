@@ -31,6 +31,10 @@ const generateRows = (selection, clef, range) => {
 
             return (<IndexItem key={index} label={scale} clef={clef} notes={notes} beats={4} />)
         })
+    } else if (selection === 'keys') {
+        return Object.keys(scaleList).map((scale, index) => {
+            return (<IndexItem key={index} label={scale} clef={clef} notes={[]} beats={0} keySignature={scaleList[scale][0]} />)
+        })
     }
 }
 
@@ -47,12 +51,18 @@ const IndexList = ({ route }) => {
             <ScrollView style={styles.scroll}>
                 {generateRows(selection, clef, range)}
             </ScrollView>
-            <Text style={styles.octave}> Octave:</Text>
-            <View style={styles.rangeContainer}>
-                <HalfButton title={'-'} onPress={() => setRange(range - 1)} />
-                <Text style={styles.range}> {range} </Text>
-                <HalfButton title={'+'} onPress={() => setRange(range + 1)} />
-            </View>
+
+            {selection !== 'keys' ?
+                (<>
+                    <Text style={styles.octave}> Octave:</Text>
+                    <View style={styles.rangeContainer}>
+                        <HalfButton title={'-'} onPress={() => setRange(range - 1)} />
+                        <Text style={styles.range}> {range} </Text>
+                        <HalfButton title={'+'} onPress={() => setRange(range + 1)} />
+                    </View>
+                </>)
+                : <></>
+            }
         </View>
     );
 };
