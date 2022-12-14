@@ -19,13 +19,11 @@ const generateRows = (selection, clef, range) => {
         })
     } else if (selection === 'scales') {
         return Object.keys(scaleList).map((scale, index) => {
-            console.log(scale)
             notes = scaleList[scale].map((note, noteInd) => {
                 if (note[0] === 'C' && noteInd !== 0) {
                     nextOctave = true;
                 }
                 const noteRange = nextOctave ? range + 1 : range
-                console.log(note, noteRange)
                 return (new Note(note, noteRange))
             })
 
@@ -46,6 +44,26 @@ const IndexList = ({ route }) => {
         setRange(clef === 'treble' ? 4 : 3);
     }, [])
 
+    const setRangeWithLimit = (amount) => {
+        if (clef === 'treble') {
+            if (range + amount >= 7) {
+                setRange(range)
+            } else if (range + amount <= 2) { // lower limit
+                setRange(range);
+            } else {
+                setRange(range + amount)
+            }
+        } else if (clef === 'bass') {
+            if (range + amount >= 5) {
+                setRange(range)
+            } else if (range + amount <= 0) { // lower limit
+                setRange(range);
+            } else {
+                setRange(range + amount)
+            }
+        }
+    }
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
@@ -56,9 +74,9 @@ const IndexList = ({ route }) => {
                 (<>
                     <Text style={styles.octave}> Octave:</Text>
                     <View style={styles.rangeContainer}>
-                        <HalfButton title={'-'} onPress={() => setRange(range - 1)} />
+                        <HalfButton title={'-'} onPress={() => setRangeWithLimit(-1)} />
                         <Text style={styles.range}> {range} </Text>
-                        <HalfButton title={'+'} onPress={() => setRange(range + 1)} />
+                        <HalfButton title={'+'} onPress={() => setRangeWithLimit(1)} />
                     </View>
                 </>)
                 : <></>

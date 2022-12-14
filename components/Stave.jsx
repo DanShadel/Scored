@@ -89,9 +89,6 @@ const drawKeySignature = (clef, keySignature) => {
     const width = 100;
     const [context, stave] = generateContext(clef, width);
 
-    // figure out which key it is
-    console.log(keySignature)
-
     stave.setKeySignature(keySignature)
     stave.draw();
 
