@@ -6,3 +6,11 @@ export const setClefAction = (clef) => {
         clef
     }
 }
+
+export const setRangeAction = (range) => {
+    return {
+        type: types.SET_RANGE,
+        range
+    }
+
+}

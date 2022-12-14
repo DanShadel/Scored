@@ -8,7 +8,7 @@ const staveReducer = (state = INITIAL_STATE, action) => {
         case types.SET_CLEF:
             return { ...state, clef: action.clef }
         case types.SET_RANGE:
-            return { ...state, clef: action.clef }
+            return { ...state, clef: action.range }
         default:
             return state;
     }

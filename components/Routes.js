@@ -9,11 +9,10 @@ import IndexList from './IndexList';
 import Learn from './Learn';
 import Question from './Question';
 import Index from './Index';
+import ClefSelector from './ClefSelector';
 
 const Stack = createNativeStackNavigator();
 
-// console.log('store')
-// console.log(store)
 const Routes = () => {
     return (
         <NavigationContainer>

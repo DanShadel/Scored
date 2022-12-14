@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import ClefSelector from './ClefSelector';
+import RangeSelector from './RangeSelector';
 
 const Learn = () => {
     return (
         <View style={styles.container}>
-            <Text>Learn</Text>
+            <RangeSelector />
+            <ClefSelector />
         </View>
     );
 };
@@ -14,7 +17,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#2c3e50',
+        flexDirection: 'row',
+        width: '100%'
     },
 });
 
