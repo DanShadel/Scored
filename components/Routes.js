@@ -12,8 +12,8 @@ import Index from './Index';
 
 const Stack = createNativeStackNavigator();
 
-console.log('store')
-console.log(store)
+// console.log('store')
+// console.log(store)
 const Routes = () => {
     return (
         <NavigationContainer>
