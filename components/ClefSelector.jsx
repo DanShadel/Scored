@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setClefAction } from '../actions/staveActions';
 import BassClef from "../assets/bassClef.svg";
 import TrebleClef from "../assets/trebleClef.svg";
-import { getClef } from '../constants/selectors';
+import { getClef } from '../helpers/selectors';
 
 const ClefSelector = () => {
     const dispatch = useDispatch()
@@ -13,11 +13,11 @@ const ClefSelector = () => {
     return (
         <View style={styles.container}>
             <View style={styles.buttonRow}>
-                <TouchableOpacity style={clef === 'treble' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('treble'))}>
-                    <TrebleClef width={"32"} height={"48"} />
-                </TouchableOpacity>
                 <TouchableOpacity style={clef === 'bass' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('bass'))}>
                     <BassClef width={"28"} height={"28"} />
+                </TouchableOpacity>
+                <TouchableOpacity style={clef === 'treble' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('treble'))}>
+                    <TrebleClef width={"32"} height={"48"} />
                 </TouchableOpacity>
             </View>
         </View >

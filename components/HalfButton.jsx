@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#D8D8D8',
-        borderWidth: 2,
         marginTop: 16,
         width: '20%',
         height: 64,
+        borderWidth: 2,
         borderRadius: 24,
     },
     text: {

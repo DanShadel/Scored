@@ -5,18 +5,20 @@ import { bassRange, chromaticScale, chromaticScaleAllVariations, CMaj, trebleRan
 import Stave from './Stave';
 import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
+import { useSelector } from 'react-redux';
+import { getClef } from '../helpers/selectors';
+import StaveControls from './StaveControls';
 
 
-const Question = ({ navigation, route }) => {
+const Question = ({ navigation }) => {
 
-    const { clef } = route.params;
+    const clef = useSelector(getClef);
     const [notes, setNotes] = React.useState([]);
     const [displayAnswer, setDisplayAnswer] = React.useState(false);
     const [answer, setAnswer] = React.useState('');
 
     const generateNote = () => {
         setDisplayAnswer(false);
-        console.log(clef)
         const range = getRangeByClef(clef);
         const note1 = new Note(pickOne(chromaticScaleAllVariations), pickOne(range))
         setNotes([note1])
@@ -27,7 +29,7 @@ const Question = ({ navigation, route }) => {
         setDisplayAnswer(false);
         const triad = getTriad(scale);
         const range = getRangeByClef(clef);
-        const position = pickOne(range); //make all note s the same range
+        const position = pickOne(range); //make all notes the same range
         const chord = triad.map(note => new Note(note, position))
 
         console.log(chord)
@@ -55,7 +57,10 @@ const Question = ({ navigation, route }) => {
                     <TitleButton title="Show Answer" onPress={() => setDisplayAnswer(true)} />
                 </View>
             }
-        </View>
+            <View style={styles.controls}>
+                <StaveControls />
+            </View>
+        </View >
     );
 };
 
@@ -82,6 +87,9 @@ const styles = StyleSheet.create({
         flex: 2,
         justifyContent: 'flex-end',
         alignItems: 'center',
+    },
+    controls: {
+        flex: .5,
     }
 
 });

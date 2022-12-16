@@ -9,11 +9,11 @@ const Home = ({ navigation }) => {
                 <Text style={styles.titleText}>Scored</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <TitleButton title={"Learn"} onPress={() => { navigation.navigate('Learn') }} disabled={false} />
-                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('QuestionClefSelection') }} />
+                <TitleButton title={"Learn"} onPress={() => { navigation.navigate('Learn') }} disabled={true} />
+                <TitleButton title={"Quiz"} onPress={() => { navigation.navigate('Question') }} />
                 <TitleButton title={"Metronome"} onPress={() => { navigation.navigate('Metronome') }} disabled={true} />
                 <TitleButton title={"Tuner"} onPress={() => { navigation.navigate('Tuner') }} disabled={true} />
-                <TitleButton title={"Index"} onPress={() => { navigation.navigate('IndexClefSelection') }} />
+                <TitleButton title={"Index"} onPress={() => { navigation.navigate('Index') }} />
             </View>
         </>
     );

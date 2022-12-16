@@ -1,34 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setClefAction, setRangeAction } from '../actions/staveActions';
-import BassClef from "../assets/bassClef.svg";
-import TrebleClef from "../assets/trebleClef.svg";
-import { getClef, getRange } from '../constants/selectors';
-
-
-
-// <View style={styles.rangeContainer}>
-{/* <HalfButton title={'-'} onPress={() => setRangeWithLimit(-1)} />
-<Text style={styles.range}> {range} </Text>
-<HalfButton title={'+'} onPress={() => setRangeWithLimit(1)} />
-</View> */}
-
+import { setRangeAction } from '../actions/staveActions';
+import { getRange } from '../helpers/selectors';
 
 
 const RangeSelector = () => {
     const dispatch = useDispatch()
     const range = useSelector(getRange);
-    console.log(range)
+
+    const setRangeWithLimit = (amount) => {
+        if (range + amount >= 7) { // upper limit = 6
+            dispatch(setRangeAction(range))
+        } else if (range + amount <= 0) { // lower limit = 1
+            dispatch(setRangeAction(range))
+        } else {
+            dispatch(setRangeAction(range + amount))
+        }
+    };
 
     return (
         <View style={styles.container}>
             <View style={styles.row}>
-                <TouchableOpacity style={styles.button} onPress={() => setRangeAction}>
+                <TouchableOpacity style={styles.button} onPress={() => setRangeWithLimit(-1)}>
                     <Text style={styles.text}> - </Text>
                 </TouchableOpacity>
                 <Text style={styles.rangeLabel}>{range}</Text>
-                <TouchableOpacity style={styles.button} onPress={() => setRangeWithLimits(range, -1)}>
+                <TouchableOpacity style={styles.button} onPress={() => setRangeWithLimit(1)}>
                     <Text style={styles.text}> + </Text>
                 </TouchableOpacity>
             </View >
@@ -36,10 +34,6 @@ const RangeSelector = () => {
     );
 };
 
-const setRangeWithLimits = (range, amount) => {
-    //TODO: this
-
-}
 
 const styles = StyleSheet.create({
     container: {
@@ -60,11 +54,12 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         width: '100%',
-        height: '10%',
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
     text: {
+
+        alignItems: 'center',
         fontSize: 32
     },
     rangeLabel: {

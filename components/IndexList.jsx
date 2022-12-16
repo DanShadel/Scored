@@ -5,6 +5,9 @@ import { getTriad, getTriadWithRange } from '../helpers/helpers';
 import HalfButton from './HalfButton';
 import IndexItem from './IndexItem';
 import { Note } from '../helpers/Note';
+import { useSelector } from 'react-redux';
+import { getRange, getClef } from '../helpers/selectors';
+import StaveControls from './StaveControls';
 
 const generateRows = (selection, clef, range) => {
     let notes = [];
@@ -37,50 +40,19 @@ const generateRows = (selection, clef, range) => {
 }
 
 const IndexList = ({ route }) => {
-    const { selection, clef } = route.params;
-    const [range, setRange] = React.useState(4);
-
-    React.useEffect(() => {
-        setRange(clef === 'treble' ? 4 : 3);
-    }, [])
-
-    const setRangeWithLimit = (amount) => {
-        if (clef === 'treble') {
-            if (range + amount >= 7) {
-                setRange(range)
-            } else if (range + amount <= 2) { // lower limit
-                setRange(range);
-            } else {
-                setRange(range + amount)
-            }
-        } else if (clef === 'bass') {
-            if (range + amount >= 5) {
-                setRange(range)
-            } else if (range + amount <= 0) { // lower limit
-                setRange(range);
-            } else {
-                setRange(range + amount)
-            }
-        }
-    }
+    const { selection } = route.params;
+    const range = useSelector(getRange);
+    const clef = useSelector(getClef);
 
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
                 {generateRows(selection, clef, range)}
             </ScrollView>
+            <View style={styles.controls}>
+                <StaveControls />
+            </View>
 
-            {selection !== 'keys' ?
-                (<>
-                    <Text style={styles.octave}> Octave:</Text>
-                    <View style={styles.rangeContainer}>
-                        <HalfButton title={'-'} onPress={() => setRangeWithLimit(-1)} />
-                        <Text style={styles.range}> {range} </Text>
-                        <HalfButton title={'+'} onPress={() => setRangeWithLimit(1)} />
-                    </View>
-                </>)
-                : <></>
-            }
         </View>
     );
 };
@@ -113,6 +85,10 @@ const styles = StyleSheet.create({
     octave: {
         marginTop: 16,
         fontSize: 24,
+    },
+    controls: {
+        flex: .25,
+        marginTop: 8,
     }
 });
 
