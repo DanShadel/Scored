@@ -1,24 +1,25 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 import ClefSelector from './ClefSelector';
 import RangeSelector from './RangeSelector';
 
-const Learn = () => {
+const StaveControls = () => {
     return (
         <View style={styles.container}>
-            <Text>Learn</Text>
+            <RangeSelector />
+            <ClefSelector />
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
+        flex: .5,
         alignItems: 'center',
         flexDirection: 'row',
-        width: '100%'
+        width: '100%',
+
     },
 });
 
-export default Learn;
+export default StaveControls;

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 const HalfButton = ({ onPress, title }) => {
     return (
@@ -14,10 +14,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#D8D8D8',
-        borderWidth: 2,
         marginTop: 16,
         width: '20%',
         height: 64,
+        borderWidth: 2,
         borderRadius: 24,
     },
     text: {

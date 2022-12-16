@@ -5,6 +5,9 @@ import { getTriad, getTriadWithRange } from '../helpers/helpers';
 import HalfButton from './HalfButton';
 import IndexItem from './IndexItem';
 import { Note } from '../helpers/Note';
+import { useSelector } from 'react-redux';
+import { getRange, getClef } from '../helpers/selectors';
+import StaveControls from './StaveControls';
 
 const generateRows = (selection, clef, range) => {
     let notes = [];
@@ -19,13 +22,11 @@ const generateRows = (selection, clef, range) => {
         })
     } else if (selection === 'scales') {
         return Object.keys(scaleList).map((scale, index) => {
-            console.log(scale)
             notes = scaleList[scale].map((note, noteInd) => {
                 if (note[0] === 'C' && noteInd !== 0) {
                     nextOctave = true;
                 }
                 const noteRange = nextOctave ? range + 1 : range
-                console.log(note, noteRange)
                 return (new Note(note, noteRange))
             })
 
@@ -39,30 +40,19 @@ const generateRows = (selection, clef, range) => {
 }
 
 const IndexList = ({ route }) => {
-    const { selection, clef } = route.params;
-    const [range, setRange] = React.useState(4);
-
-    React.useEffect(() => {
-        setRange(clef === 'treble' ? 4 : 3);
-    }, [])
+    const { selection } = route.params;
+    const range = useSelector(getRange);
+    const clef = useSelector(getClef);
 
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
                 {generateRows(selection, clef, range)}
             </ScrollView>
+            <View style={styles.controls}>
+                <StaveControls />
+            </View>
 
-            {selection !== 'keys' ?
-                (<>
-                    <Text style={styles.octave}> Octave:</Text>
-                    <View style={styles.rangeContainer}>
-                        <HalfButton title={'-'} onPress={() => setRange(range - 1)} />
-                        <Text style={styles.range}> {range} </Text>
-                        <HalfButton title={'+'} onPress={() => setRange(range + 1)} />
-                    </View>
-                </>)
-                : <></>
-            }
         </View>
     );
 };
@@ -95,6 +85,10 @@ const styles = StyleSheet.create({
     octave: {
         marginTop: 16,
         fontSize: 24,
+    },
+    controls: {
+        flex: .25,
+        marginTop: 8,
     }
 });
 
