@@ -1,24 +1,45 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import ClefSelector from './ClefSelector';
-import RangeSelector from './RangeSelector';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 
 const Learn = () => {
     return (
         <View style={styles.container}>
-            <Text>Learn</Text>
-        </View>
+            <Text>sup</Text>
+        </View >
     );
 };
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        flexDirection: 'row',
-        width: '100%'
     },
+    button: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: '#D8D8D8',
+        borderWidth: 2,
+        width: 52,
+        height: 52,
+        borderRadius: 12,
+    },
+    row: {
+        flexDirection: 'row',
+        width: '100%',
+        justifyContent: 'space-evenly',
+        alignItems: 'center'
+    },
+    text: {
+
+        alignItems: 'center',
+        fontSize: 32
+    },
+    rangeLabel: {
+        fontSize: 32,
+    }
+
 });
 
 export default Learn;

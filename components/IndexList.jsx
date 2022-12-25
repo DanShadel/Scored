@@ -1,20 +1,19 @@
 import React from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import { scaleList, chromaticScaleAllVariations } from '../constants/musicConstants';
-import { getTriad, getTriadWithRange } from '../helpers/helpers';
-import HalfButton from './HalfButton';
-import IndexItem from './IndexItem';
-import { Note } from '../helpers/Note';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { getRange, getClef } from '../helpers/selectors';
+import { chromaticScaleAllVariations, CMaj, scaleList } from '../constants/musicConstants';
+import { getTriadWithRange } from '../helpers/helpers';
+import { Note } from '../helpers/Note';
+import { getAccidental, getClef, getRange } from '../helpers/selectors';
+import IndexItem from './IndexItem';
 import StaveControls from './StaveControls';
 
-const generateRows = (selection, clef, range) => {
+const generateRows = (selection, clef, range, accidental) => {
     let notes = [];
     let nextOctave = false;
 
     if (selection === 'notes') {
-        return chromaticScaleAllVariations.map((note, index) => (<IndexItem key={index} label={note} notes={[new Note(note, range)]} clef={clef} beats={1} />))
+        return CMaj.map((note, index) => (<IndexItem key={index} label={note+accidental} notes={[new Note(note+accidental, range)]} clef={clef} beats={1} />))
     } else if (selection === 'chords') {
         return Object.keys(scaleList).map((key, index) => {
             notes = getTriadWithRange(scaleList[key], range).map((note) => (new Note(note.name, note.range)))
@@ -43,16 +42,15 @@ const IndexList = ({ route }) => {
     const { selection } = route.params;
     const range = useSelector(getRange);
     const clef = useSelector(getClef);
-
+    const accidental = useSelector(getAccidental);
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scroll}>
-                {generateRows(selection, clef, range)}
+                {generateRows(selection, clef, range, accidental)}
             </ScrollView>
             <View style={styles.controls}>
-                <StaveControls />
+                <StaveControls showAccidentals={selection === 'notes'} />
             </View>
-
         </View>
     );
 };
@@ -63,32 +61,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    rangeContainer: {
-        flex: .15,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: 32,
-
-    },
     scroll: {
-        flex: 50,
+        flex: 1,
         flexDirection: 'column',
     },
-    range: {
-        fontSize: 48,
-        width: 64,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        textAlign: 'center',
-    },
-    octave: {
-        marginTop: 16,
-        fontSize: 24,
-    },
     controls: {
-        flex: .25,
-        marginTop: 8,
+        flex: .3,
+
     }
 });
 

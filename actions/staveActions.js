@@ -14,3 +14,10 @@ export const setRangeAction = (range) => {
     }
 
 }
+
+export const setAccidenalAction = (accidental) => {
+    return {
+        type: types.SET_ACCIDENTAL,
+        accidental
+    }
+}
