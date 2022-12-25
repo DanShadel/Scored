@@ -1,29 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { setClefAction } from '../actions/staveActions';
-import BassClef from "../assets/bassClef.svg";
-import TrebleClef from "../assets/trebleClef.svg";
-import { getClef } from '../helpers/selectors';
+import Flat from '../assets/flat.svg';
+import Sharp from '../assets/sharp.svg';
+import Natural from '../assets/natural.svg';
+import { getAccidental } from '../helpers/selectors';
+import { setAccidenalAction } from '../actions/staveActions';
 
-const ClefSelector = () => {
+const AccidentalSelector = () => {
     const dispatch = useDispatch()
-    const clef = useSelector(getClef);
-    console.log(clef)
+    const accidental = useSelector(getAccidental);
+    
     return (
         <View style={styles.container}>
             <View style={styles.buttonRow}>
-                <TouchableOpacity style={clef === 'bass' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('bass'))}>
-                    <BassClef width={"28"} height={"28"} />
+                <TouchableOpacity style={accidental === 'b' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setAccidenalAction('b'))}>
+                    <Flat height={'32'}/>
                 </TouchableOpacity>
-                <TouchableOpacity style={clef === 'treble' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('treble'))}>
-                    <TrebleClef width={"32"} height={"48"} />
+                <TouchableOpacity style={accidental === '' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setAccidenalAction(''))}>
+                   <Natural height={'28'}/>
                 </TouchableOpacity>
+                <TouchableOpacity style={accidental === '#' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setAccidenalAction('#'))}>
+                    <Sharp height={'32'}/>
+                </TouchableOpacity>          
             </View>
         </View >
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -44,6 +47,7 @@ const styles = StyleSheet.create({
     buttonRow: {
         flexDirection: 'row',
         width: '100%',
+        height: '10%',
         justifyContent: 'space-evenly',
         alignItems: 'center'
     },
@@ -62,4 +66,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ClefSelector;
+export default AccidentalSelector;

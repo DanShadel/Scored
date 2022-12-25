@@ -4,6 +4,8 @@ export const clefs = ['treble', 'bass']
 export const trebleRange = [4, 5]
 export const bassRange = [2, 3,]
 
+// change this file to use Tonal.js
+
 // Scales
 export const chromaticScale = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 export const chromaticScaleAllVariations = ['C', 'C#', 'Db', 'D', 'D#', 'Eb', 'E', 'F', 'F#', 'Gb', 'G', 'G#', 'Ab', 'A', 'A#', 'Bb', 'B',]

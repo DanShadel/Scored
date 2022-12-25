@@ -25,7 +25,8 @@
     "react-redux": "^8.0.5",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
-    "standalone-vexflow-context": "^0.1.1"
+    "standalone-vexflow-context": "^0.1.1",
+    "tonal": "^4.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
