@@ -1,28 +1,26 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 
-const HalfButton = ({ onPress, title }) => {
-    return (
-        <TouchableOpacity style={styles.container} onPress={() => onPress()}>
-            <Text style={styles.text}>{title}</Text>
-        </TouchableOpacity>
-    );
+const HalfButton = ({onPress, title}) => {
+	return (
+		<TouchableOpacity style={styles.container} onPress={() => onPress()}>
+			<Text style={styles.text}>{title}</Text>
+		</TouchableOpacity>
+	);
 };
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#D8D8D8',
-        marginTop: 16,
-        width: '20%',
-        height: 64,
-        borderWidth: 2,
-        borderRadius: 24,
-    },
-    text: {
-        fontSize: 24
-    },
+	container: {
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderColor: '#D8D8D8',
+		marginTop: 16,
+		width: '20%',
+		height: 64,
+		borderWidth: 2,
+		borderRadius: 24,
+	},
+	text: {fontSize: 24},
 
 });
 

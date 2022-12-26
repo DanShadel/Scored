@@ -1,55 +1,66 @@
-import { bassRange, scaleList, trebleRange } from "../constants/musicConstants";
+import {bassRange, scaleList, trebleRange} from '../constants/musicConstants';
 
 export const pickOne = (input) => {
-    return input[Math.floor(Math.random() * input.length)];
-}
+	return input[Math.floor(Math.random() * input.length)];
+};
 
 export const getRandomChord = () => {
-    const chords = Object.keys(scaleList);
-    const name = pickOne(chords);
+	const chords = Object.keys(scaleList);
+	const name = pickOne(chords);
 
-    return { name: name, scale: scaleList[name] }
-}
+	return {
+		name: name,
+		scale: scaleList[name]
+	};
+};
 
 export const getNoteMods = (note) => {
-    return ({ name: note.charAt(0), mods: note.charAt(1) })
-}
+	return ({
+		name: note.charAt(0),
+		mods: note.charAt(1)
+	});
+};
 
 export const getRangeByClef = (clef) => {
-    if (clef === 'treble') {
-        return trebleRange;
-    } else if (clef = 'bass') {
-        return bassRange;
-    } else {
-        return 'INVALID CLEF NAME'
-    }
-}
+	if (clef === 'treble') {
+		return trebleRange;
+	} else if (clef === 'bass') {
+		return bassRange;
+	} else {
+		return 'INVALID CLEF NAME';
+	}
+};
 
-export const getTriad = (scale) => { return [scale[0], scale[2], scale[4]] }
+export const getTriad = (scale) => { return [scale[0], scale[2], scale[4]]; };
 
 export const getTriadWithRange = (scale, range) => {
-    return [
-        { name: scale[0], range: range },
-        { name: scale[2], range: range },
-        { name: scale[4], range: range }
-    ]
-}
+	return [
+		{
+			name: scale[0],
+			range: range
+		},
+		{
+			name: scale[2],
+			range: range
+		},
+		{
+			name: scale[4],
+			range: range
+		}
+	];
+};
 
 export const handleChordRange = (root, note, range) => {
 
-    if (note >= 'C' && note > root && root < 'C') {
-        return range + 1;
-    }
-    else if (note >= 'C' && note > root) {
-        return range
+	if (note >= 'C' && note > root && root < 'C') {
+		return range + 1;
+	}
+	else if (note >= 'C' && note > root) {
+		return range;
 
-    } else if (note > root && root < 'C') {
-        return range + 1
-    }
+	} else if (note > root && root < 'C') {
+		return range + 1;
+	}
 
-    return range;
-}
-
-// export const rollover = (note1, note2) => {
-//     if()
-// }
+	return range;
+};
