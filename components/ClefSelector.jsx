@@ -9,7 +9,6 @@ import { getClef } from '../helpers/selectors';
 const ClefSelector = () => {
     const dispatch = useDispatch()
     const clef = useSelector(getClef);
-    console.log(clef)
     return (
         <View style={styles.container}>
             <View style={styles.buttonRow}>

@@ -32,7 +32,6 @@ const Question = ({ navigation }) => {
         const position = pickOne(range); //make all notes the same range
         const chord = triad.map(note => new Note(note, position))
 
-        console.log(chord)
         setNotes(chord)
         setAnswer(name)
     }
