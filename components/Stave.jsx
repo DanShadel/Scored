@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { NotoFontPack, ReactNativeSVGContext } from 'standalone-vexflow-context';
+import { note, Note } from 'tonal';
 import Vex from 'vexflow';
 
 const generateContext = (clef, width) => {
@@ -51,7 +52,7 @@ const drawOneBeat = (clef, notes) => {
     return { context, stave };
 }
 
-const drawScale = (clef, notes) => {
+const drawScale = (clef, notes, keySignature) => {
     // notes = [Note(name, range), Note(name,range)....]
     const width = 250;
     const [context, stave] = generateContext(clef, width);
@@ -106,7 +107,7 @@ const Stave = ({ clef, notes, beats, keySignature }) => {
             ({ context, stave } = drawOneBeat(clef, notes));
             break;
         case 4:
-            ({ context, stave } = drawScale(clef, notes));
+            ({ context, stave } = drawScale(clef, notes, keySignature));
             break;
     }
 

@@ -1,39 +1,50 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import { chromaticScaleAllVariations, CMaj, scaleList } from '../constants/musicConstants';
+import { chromaticScaleAllVariations, majorScales, minorScales} from '../constants/musicConstants';
 import { getTriadWithRange } from '../helpers/helpers';
 import { Note } from '../helpers/Note';
 import { getAccidental, getClef, getRange } from '../helpers/selectors';
 import IndexItem from './IndexItem';
 import StaveControls from './StaveControls';
+import { Scale } from 'tonal';
 
 const generateRows = (selection, clef, range, accidental) => {
     let notes = [];
     let nextOctave = false;
 
     if (selection === 'notes') {
-        return CMaj.map((note, index) => (<IndexItem key={index} label={note+accidental} notes={[new Note(note+accidental, range)]} clef={clef} beats={1} />))
+        notes = Scale.get('C major').notes;
+        return notes.map((note, index) => (<IndexItem key={index} label={note+accidental} notes={[new Note(note+accidental, range)]} clef={clef} beats={1} />))
     } else if (selection === 'chords') {
         return Object.keys(scaleList).map((key, index) => {
             notes = getTriadWithRange(scaleList[key], range).map((note) => (new Note(note.name, note.range)))
             return (<IndexItem key={index} label={key} clef={clef} notes={notes} beats={1} />)
         })
     } else if (selection === 'scales') {
-        return Object.keys(scaleList).map((scale, index) => {
-            notes = scaleList[scale].map((note, noteInd) => {
-                if (note[0] === 'C' && noteInd !== 0) {
+
+        return minorScales.map((scaleName, index) => {
+            const notesInScale = Scale.get(scaleName).notes; 
+            notes = notesInScale.map((note, noteInd) => {   
+
+                if (note[0] === 'C' && noteInd > 0) {
                     nextOctave = true;
                 }
+                
                 const noteRange = nextOctave ? range + 1 : range
                 return (new Note(note, noteRange))
-            })
+            });
 
-            return (<IndexItem key={index} label={scale} clef={clef} notes={notes} beats={4} />)
-        })
+            nextOctave = false;
+            notes.push(new Note(notesInScale[0], range+1))
+
+            return (<IndexItem key={index} label={scaleName} clef={clef} notes={notes} beats={4} />)
+        })  
     } else if (selection === 'keys') {
-        return Object.keys(scaleList).map((scale, index) => {
-            return (<IndexItem key={index} label={scale} clef={clef} notes={[]} beats={0} keySignature={scaleList[scale][0]} />)
+
+        return majorScales.map((scaleName, index) => {
+            const notesInScale = Scale.get(scaleName).notes; 
+            return (<IndexItem key={index} label={scaleName} clef={clef} notes={[]} beats={0} keySignature={notesInScale[0]} />)
         })
     }
 }
