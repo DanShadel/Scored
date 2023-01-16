@@ -1,23 +1,23 @@
-import * as types from "../constants/actionTypes";
+import * as types from '../constants/actionTypes';
 
 export const setClefAction = (clef) => {
-    return {
-        type: types.SET_CLEF,
-        clef
-    }
-}
+	return {
+		type: types.SET_CLEF,
+		clef
+	};
+};
 
 export const setRangeAction = (range) => {
-    return {
-        type: types.SET_RANGE,
-        range
-    }
+	return {
+		type: types.SET_RANGE,
+		range
+	};
 
-}
+};
 
 export const setAccidenalAction = (accidental) => {
-    return {
-        type: types.SET_ACCIDENTAL,
-        accidental
-    }
-}
+	return {
+		type: types.SET_ACCIDENTAL,
+		accidental
+	};
+};

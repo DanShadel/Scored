@@ -8,89 +8,87 @@ import TitleButton from './TitleButton';
 import { useSelector } from 'react-redux';
 import { getClef } from '../helpers/selectors';
 import StaveControls from './StaveControls';
-
+import { Scale } from 'tonal';
 
 const Question = ({ navigation }) => {
 
-    const clef = useSelector(getClef);
-    const [notes, setNotes] = React.useState([]);
-    const [displayAnswer, setDisplayAnswer] = React.useState(false);
-    const [answer, setAnswer] = React.useState('');
+	const clef = useSelector(getClef);
+	const [notes, setNotes] = React.useState([]);
+	const [displayAnswer, setDisplayAnswer] = React.useState(false);
+	const [answer, setAnswer] = React.useState('');
 
-    const generateNote = () => {
-        setDisplayAnswer(false);
-        const range = getRangeByClef(clef);
-        const note1 = new Note(pickOne(chromaticScaleAllVariations), pickOne(range))
-        setNotes([note1])
-        setAnswer(note1.name)
-    }
+	const generateNote = () => {
+		setDisplayAnswer(false);
+		const range = getRangeByClef(clef);
+		const note1 = new Note(pickOne(Scale.get('B chromatic').notes), pickOne(range)); // currently displays accidentals as sharps
+		console.log(note1)
+		setNotes([note1]);
+		setAnswer(note1.name);
+	};
 
-    const generateChord = ({ name, scale }) => {
-        setDisplayAnswer(false);
-        const triad = getTriad(scale);
-        const range = getRangeByClef(clef);
-        const position = pickOne(range); //make all notes the same range
-        const chord = triad.map(note => new Note(note, position))
+	const generateChord = ({ name, scale }) => {
+		setDisplayAnswer(false);
+		const triad = getTriad(scale);
+		const range = getRangeByClef(clef);
+		const position = pickOne(range); //make all notes the same range
+		const chord = triad.map(note => new Note(note, position));
 
-        console.log(chord)
-        setNotes(chord)
-        setAnswer(name)
-    }
+		setNotes(chord);
+		setAnswer(name);
+	};
 
-    React.useEffect(() => {
-        generateNote();
-    }, [])
+	React.useEffect(() => {
+		generateNote();
+	}, []);
 
 
-    return (
-        <View style={styles.container}>
-            {notes.length > 0 ? <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View> : <></>}
+	return (
+		<View style={styles.container}>
+			{notes.length > 0 ? <View style={styles.stave}><Stave notes={notes} clef={clef} beats={1} /></View> : <></>}
 
-            {displayAnswer ?
-                <View style={styles.bottomContainer}>
-                    <TitleButton title="New Note" onPress={() => generateNote()} />
-                    <TitleButton title="New Chord" onPress={() => generateChord(getRandomChord())} />
-                    <Text style={styles.answer}>{answer}</Text>
-                </View>
-                :
-                <View style={styles.bottomContainer}>
-                    <TitleButton title="Show Answer" onPress={() => setDisplayAnswer(true)} />
-                </View>
-            }
-            <View style={styles.controls}>
-                <StaveControls />
-            </View>
-        </View >
-    );
+			{displayAnswer ?
+				<View style={styles.bottomContainer}>
+					<TitleButton title="New Note" onPress={() => generateNote()} />
+					<TitleButton title="New Chord" onPress={() => generateChord(getRandomChord())} />
+					<Text style={styles.answer}>{answer}</Text>
+				</View>
+				:
+				<View style={styles.bottomContainer}>
+					<TitleButton title="Show Answer" onPress={() => setDisplayAnswer(true)} />
+				</View>
+			}
+			<View style={styles.controls}>
+				<StaveControls />
+			</View>
+		</View >
+	);
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    answer: {
-        marginTop: 64,
-        fontSize: 32,
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: 'black',
-    },
-    bottomContainer: {
-        flex: 2,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        width: '100%',
-    },
-    stave: {
-        flex: 2,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    controls: {
-        flex: .5,
-    }
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	answer: {
+		marginTop: 64,
+		fontSize: 32,
+		justifyContent: 'center',
+		alignItems: 'center',
+		color: 'black',
+	},
+	bottomContainer: {
+		flex: 2,
+		justifyContent: 'flex-start',
+		alignItems: 'center',
+		width: '100%',
+	},
+	stave: {
+		flex: 2,
+		justifyContent: 'flex-end',
+		alignItems: 'center',
+	},
+	controls: { flex: .5, }
 
 });
 
