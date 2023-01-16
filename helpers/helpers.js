@@ -1,16 +1,21 @@
-import {bassRange, scaleList, trebleRange} from '../constants/musicConstants';
+import { allScales, bassRange, scaleList, trebleRange } from '../constants/musicConstants';
+import { Scale } from 'tonal';
 
 export const pickOne = (input) => {
+	console.log(input)
 	return input[Math.floor(Math.random() * input.length)];
 };
 
 export const getRandomChord = () => {
-	const chords = Object.keys(scaleList);
-	const name = pickOne(chords);
 
+	console.log(allScales);
+
+	const name = pickOne(allScales);
+	console.log(name);
+	console.log(Scale.get(name))
 	return {
 		name: name,
-		scale: scaleList[name]
+		scale: Scale.get(name).notes
 	};
 };
 

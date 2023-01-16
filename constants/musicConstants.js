@@ -1,4 +1,4 @@
-import {Scale} from 'tonal';
+import { Scale } from 'tonal';
 
 export const clefs = ['treble', 'bass'];
 
@@ -35,3 +35,5 @@ export const minorScales = [
 	'Db minor',
 	'Gb minor',
 ];
+
+export const allScales = majorScales.concat(minorScales)

@@ -1,7 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-const HalfButton = ({onPress, title}) => {
+const HalfButton = ({ onPress, title }) => {
 	return (
 		<TouchableOpacity style={styles.container} onPress={() => onPress()}>
 			<Text style={styles.text}>{title}</Text>
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
 		borderWidth: 2,
 		borderRadius: 24,
 	},
-	text: {fontSize: 24},
+	text: { fontSize: 24 },
 
 });
 

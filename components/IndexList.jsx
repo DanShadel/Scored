@@ -1,11 +1,11 @@
 import React from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
-import {useSelector} from 'react-redux';
-import {Scale} from 'tonal';
-import {majorScales, minorScales} from '../constants/musicConstants';
-import {getTriadWithRange} from '../helpers/helpers';
-import {Note} from '../helpers/Note';
-import {getAccidental, getClef, getRange} from '../helpers/selectors';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { useSelector } from 'react-redux';
+import { Scale } from 'tonal';
+import { allScales, majorScales, minorScales } from '../constants/musicConstants';
+import { getTriadWithRange } from '../helpers/helpers';
+import { Note } from '../helpers/Note';
+import { getAccidental, getClef, getRange } from '../helpers/selectors';
 import IndexItem from './IndexItem';
 import StaveControls from './StaveControls';
 
@@ -15,16 +15,26 @@ const generateRows = (selection, clef, range, accidental) => {
 
 	if (selection === 'notes') {
 		notes = Scale.get('C major').notes;
-		return notes.map((note, index) => (<IndexItem key={index} label={note+accidental} notes={[new Note(note+accidental, range)]} clef={clef} beats={1} />));
+		return notes.map((note, index) => (<IndexItem key={index} label={note + accidental} notes={[new Note(note + accidental, range)]} clef={clef} beats={1} />));
 	} else if (selection === 'chords') {
-		//fix later
-		return Object.keys(scaleList).map((key, index) => {
-			notes = getTriadWithRange(scaleList[key], range).map((note) => (new Note(note.name, note.range)));
-			return (<IndexItem key={index} label={key} clef={clef} notes={notes} beats={1} />);
+		return allScales.map((scaleName, index) => {
+
+			notes = getTriadWithRange(Scale.get(scaleName).notes, range).map((note) => (new Note(note.name, note.range)));
+			return (<IndexItem key={index} label={scaleName} clef={clef} notes={notes} beats={1} />);
 		});
 	} else if (selection === 'scales') {
+		// For now, only display major scales
+		// Rendering all scales is takes to long to load and impacts performance
+		// Eventually, split this into another selection
 
-		return minorScales.map((scaleName, index) => {
+		// 1. Major
+		// 2. Minor
+		// 3. Pentatonic
+		// 4. Dorian
+		// 5. Phrygian
+		// etc..
+
+		return majorScales.map((scaleName, index) => {
 			const notesInScale = Scale.get(scaleName).notes;
 			notes = notesInScale.map((note, noteInd) => {
 
@@ -37,7 +47,7 @@ const generateRows = (selection, clef, range, accidental) => {
 			});
 
 			nextOctave = false;
-			notes.push(new Note(notesInScale[0], range+1));
+			notes.push(new Note(notesInScale[0], range + 1));
 
 			return (<IndexItem key={index} label={scaleName} clef={clef} notes={notes} beats={4} />);
 		});
@@ -50,8 +60,8 @@ const generateRows = (selection, clef, range, accidental) => {
 	}
 };
 
-const IndexList = ({route}) => {
-	const {selection} = route.params;
+const IndexList = ({ route }) => {
+	const { selection } = route.params;
 	const range = useSelector(getRange);
 	const clef = useSelector(getClef);
 	const accidental = useSelector(getAccidental);
@@ -77,7 +87,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 	},
-	controls: {flex: .3,}
+	controls: { flex: .3, }
 });
 
 export default IndexList;

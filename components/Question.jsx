@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {getRandomChord, getRangeByClef, getTriad, pickOne} from '../helpers/helpers';
-import {bassRange, chromaticScale, chromaticScaleAllVariations, CMaj, trebleRange, scaleList} from '../constants/musicConstants';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { getRandomChord, getRangeByClef, getTriad, pickOne } from '../helpers/helpers';
+import { bassRange, chromaticScale, chromaticScaleAllVariations, CMaj, trebleRange, scaleList } from '../constants/musicConstants';
 import Stave from './Stave';
-import {Note} from '../helpers/Note';
+import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
-import {useSelector} from 'react-redux';
-import {getClef} from '../helpers/selectors';
+import { useSelector } from 'react-redux';
+import { getClef } from '../helpers/selectors';
 import StaveControls from './StaveControls';
+import { Scale } from 'tonal';
 
-
-const Question = ({navigation}) => {
+const Question = ({ navigation }) => {
 
 	const clef = useSelector(getClef);
 	const [notes, setNotes] = React.useState([]);
@@ -20,12 +20,13 @@ const Question = ({navigation}) => {
 	const generateNote = () => {
 		setDisplayAnswer(false);
 		const range = getRangeByClef(clef);
-		const note1 = new Note(pickOne(chromaticScaleAllVariations), pickOne(range));
+		const note1 = new Note(pickOne(Scale.get('B chromatic').notes), pickOne(range)); // currently displays accidentals as sharps
+		console.log(note1)
 		setNotes([note1]);
 		setAnswer(note1.name);
 	};
 
-	const generateChord = ({name, scale}) => {
+	const generateChord = ({ name, scale }) => {
 		setDisplayAnswer(false);
 		const triad = getTriad(scale);
 		const range = getRangeByClef(clef);
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 		alignItems: 'center',
 	},
-	controls: {flex: .5,}
+	controls: { flex: .5, }
 
 });
 
