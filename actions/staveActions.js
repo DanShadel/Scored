@@ -21,3 +21,10 @@ export const setAccidenalAction = (accidental) => {
 		accidental
 	};
 };
+
+export const setTempoAction = (tempo) => {
+	return {
+		type: types.SET_TEMPO,
+		tempo
+	};
+};
