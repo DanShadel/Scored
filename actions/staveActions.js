@@ -19,5 +19,11 @@ export const setAccidenalAction = (accidental) => {
 	return {
 		type: types.SET_ACCIDENTAL,
 		accidental
+};
+
+export const setTempoAction = (tempo) => {
+	return {
+		type: types.SET_TEMPO,
+		tempo
 	};
 };

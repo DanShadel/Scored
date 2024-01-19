@@ -11,7 +11,7 @@ const Home = ({ navigation }) => {
 			<View style={styles.buttonContainer}>
 				<TitleButton title={'Learn'} onPress={() => { navigation.navigate('Learn'); }} disabled={true} />
 				<TitleButton title={'Quiz'} onPress={() => { navigation.navigate('Question'); }} />
-				<TitleButton title={'Metronome'} onPress={() => { navigation.navigate('Metronome'); }} disabled={true} />
+				<TitleButton title={'Metronome'} onPress={() => { navigation.navigate('Metronome'); }} />
 				<TitleButton title={'Tuner'} onPress={() => { navigation.navigate('Tuner'); }} disabled={true} />
 				<TitleButton title={'Index'} onPress={() => { navigation.navigate('Index'); }} />
 			</View>

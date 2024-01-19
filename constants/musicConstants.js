@@ -37,3 +37,25 @@ export const minorScales = [
 ];
 
 export const allScales = majorScales.concat(minorScales)
+
+export const tempos = {
+	Grave: 20,
+	Largo: 40,
+	Adagio: 55,
+	Andante: 72,
+	Moderato: 86,
+	Allegro: 109,
+	Vivace: 140,
+	Presto: 168,
+	Prestissimo: 200,
+}
+
+export const getNameByTempo = (tempo) => {
+	let label = 'Grave';
+	Object.keys(tempos).forEach((tempoMarking) => {
+		if (tempo >= tempos[tempoMarking]) {
+			label = tempoMarking
+		}
+	})
+	return label;
+}
