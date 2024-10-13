@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 	tempo: 60,
 };
 
-const staveReducer = (state = INITIAL_STATE, action) => {
+const staffReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
 		case types.SET_CLEF:
 			return {
@@ -33,4 +33,4 @@ const staveReducer = (state = INITIAL_STATE, action) => {
 	}
 };
 
-export default staveReducer;
+export default staffReducer;

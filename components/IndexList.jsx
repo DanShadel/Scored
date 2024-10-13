@@ -7,7 +7,7 @@ import { getTriadWithRange } from '../helpers/helpers';
 import { Note } from '../helpers/Note';
 import { getAccidental, getClef, getRange } from '../helpers/selectors';
 import IndexItem from './IndexItem';
-import StaveControls from './StaveControls';
+import StaffControls from './StaffControls';
 
 const generateRows = (selection, clef, range, accidental) => {
 	let notes = [];
@@ -71,7 +71,7 @@ const IndexList = ({ route }) => {
 				{generateRows(selection, clef, range, accidental)}
 			</ScrollView>
 			<View style={styles.controls}>
-				<StaveControls showAccidentals={selection === 'notes'} />
+				<StaffControls showAccidentals={selection === 'notes'} />
 			</View>
 		</View>
 	);
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 	},
-	controls: { flex: .3, }
+	controls: { flex: .25, justifyContent: 'center', alignItems: 'center', marginBottom: 32 }
 });
 
 export default IndexList;

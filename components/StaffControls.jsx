@@ -1,16 +1,16 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import AccidentalSelector from './AccidentalSelector';
 import ClefSelector from './ClefSelector';
 import RangeSelector from './RangeSelector';
 
-const StaveControls = ({showAccidentals}) => {
+const StaffControls = ({ showAccidentals }) => {
 	return (
 		<View style={showAccidentals ? styles.containerAccidental : styles.container}>
 			{showAccidentals &&
-                <View style={styles.accidentals}>
-                	<AccidentalSelector/>
-                </View>}
+				<View style={styles.accidentals}>
+					<AccidentalSelector />
+				</View>}
 			<View style={styles.row}>
 				<RangeSelector />
 				<ClefSelector />
@@ -45,4 +45,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default StaveControls;
+export default StaffControls;

@@ -4,7 +4,7 @@ export const clefs = ['treble', 'bass'];
 
 // Note Ranges on each clef (kinda)
 export const trebleRange = [4, 5];
-export const bassRange = [2, 3,];
+export const bassRange = [2, 3];
 
 export const majorScales = [
 	'C major',

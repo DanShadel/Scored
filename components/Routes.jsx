@@ -1,5 +1,5 @@
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import Home from './Home';
@@ -9,13 +9,20 @@ import Learn from './Learn';
 import Metronome from './Metronome';
 import Question from './Question';
 import Test from './Test';
+import { colors } from '../constants/colors';
 
 const Stack = createNativeStackNavigator();
-
+const theme = {
+	...DefaultTheme,
+	colors: {
+		...DefaultTheme.colors,
+		background: colors.paperWhite,
+	},
+}
 const Routes = () => {
 	return (
-		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Home">
+		<NavigationContainer theme={theme}>
+			<Stack.Navigator initialRouteName="Home" screenOptions={{ headerTintColor: 'white', headerStyle: { backgroundColor: colors.light }, title: '' }}>
 				<Stack.Screen name="Home" component={Home} screenOptions={{ headerShown: false }} />
 				<Stack.Screen name="Learn" component={Learn} />
 				<Stack.Screen name="Question" component={Question} />

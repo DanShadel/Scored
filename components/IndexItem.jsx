@@ -1,12 +1,12 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import Stave from './Stave';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import Staff from './Staff';
 
-const IndexItem = ({label, clef, notes, beats, keySignature}) => {
+const IndexItem = ({ label, clef, notes, beats, keySignature }) => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.text}>{label}</Text>
-			<View style={styles.stave}><Stave notes={notes} clef={clef} beats={beats} keySignature={keySignature} /></View>
+			<View style={styles.staff}><Staff notes={notes} clef={clef} beats={beats} keySignature={keySignature} /></View>
 		</View>
 	);
 };
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		marginTop: 20,
 	},
-	stave: {height: 100}
+	staff: { height: 100 }
 });
 
 export default IndexItem;
