@@ -6,6 +6,7 @@ import Staff from './Staff';
 import { Note } from '../helpers/Note';
 import TitleButton from './TitleButton';
 import AnswerButton from './AnswerButton';
+import ProgressBar from './ProgressBar';
 import { useSelector } from 'react-redux';
 import { getClef } from '../helpers/selectors';
 import StaffControls from './StaffControls';
@@ -100,6 +101,11 @@ const Question = ({ navigation }) => {
 
 	return (
 		<View style={styles.container}>
+
+			<View style={styles.progressBar}>
+				<ProgressBar />
+			</View>
+
 			{notes.length > 0 ? <View style={styles.staff}><Staff notes={notes} clef={clef} beats={1} /></View> : <></>}
 
 			<View style={styles.bottomContainer}>
@@ -173,6 +179,10 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		flex: 2,
 		width: '80%',
+	},
+	progressBar: {
+		flex: .25,
+		marginTop: 16
 	}
 
 });
