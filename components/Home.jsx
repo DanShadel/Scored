@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import TitleButton from './TitleButton';
+import { StatusBar } from 'expo-status-bar';
 
 const Home = ({ navigation }) => {
 	return (
 		<>
+			<StatusBar style='dark' />
 			<View style={styles.titleContainer}>
 				<Text style={styles.titleText}>Scored</Text>
 			</View>
@@ -21,14 +23,17 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
 	titleContainer: {
-		flex: 2,
-		justifyContent: 'center',
+		flex: 1,
+		justifyContent: 'top',
 		alignItems: 'center',
-		color: 'black'
+		color: 'black',
+		marginTop: 64
 	},
 	titleText: {
-		fontSize: 64,
+		fontSize: 72,
 		color: 'black',
+		fontFamily: 'Darwin',
+		letterSpacing: 2
 	},
 	buttonContainer: {
 		flex: 4,

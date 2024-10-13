@@ -22,7 +22,7 @@ const theme = {
 const Routes = () => {
 	return (
 		<NavigationContainer theme={theme}>
-			<Stack.Navigator initialRouteName="Home" screenOptions={{ headerTintColor: 'white', headerStyle: { backgroundColor: colors.light }, title: '' }}>
+			<Stack.Navigator initialRouteName="Home" screenOptions={{ headerStyle: { backgroundColor: colors.paperWhite }, title: '' }}>
 				<Stack.Screen name="Home" component={Home} screenOptions={{ headerShown: false }} />
 				<Stack.Screen name="Learn" component={Learn} />
 				<Stack.Screen name="Question" component={Question} />

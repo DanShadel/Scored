@@ -8,15 +8,13 @@ import { Note } from '../helpers/Note';
 import { getAccidental, getClef, getRange } from '../helpers/selectors';
 import IndexItem from './IndexItem';
 import StaffControls from './StaffControls';
+import NotesList from './NotesList';
 
 const generateRows = (selection, clef, range, accidental) => {
 	let notes = [];
 	let nextOctave = false;
 
-	if (selection === 'notes') {
-		notes = Scale.get('C major').notes;
-		return notes.map((note, index) => (<IndexItem key={index} label={note + accidental} notes={[new Note(note + accidental, range)]} clef={clef} beats={1} />));
-	} else if (selection === 'chords') {
+	if (selection === 'chords') {
 		return allScales.map((scaleName, index) => {
 
 			notes = getTriadWithRange(Scale.get(scaleName).notes, range).map((note) => (new Note(note.name, note.range)));
@@ -67,15 +65,29 @@ const IndexList = ({ route }) => {
 	const accidental = useSelector(getAccidental);
 	return (
 		<View style={styles.container}>
-			<ScrollView style={styles.scroll}>
-				{generateRows(selection, clef, range, accidental)}
-			</ScrollView>
-			<View style={styles.controls}>
-				<StaffControls showAccidentals={selection === 'notes'} />
-			</View>
+
+			{getList(selection, range, clef, accidental)}
+
 		</View>
 	);
 };
+
+const getList = (selection, range, clef, accidental) => {
+
+	if (selection === 'notes') {
+		return <NotesList />
+	} else {
+		return (
+			<>
+				<ScrollView style={styles.scroll}>
+					{generateRows(selection, clef, range, accidental)}
+				</ScrollView>
+				<View style={styles.controls}>
+					<StaffControls showAccidentals={selection === 'notes'} />
+				</View>
+			</>)
+	}
+}
 
 const styles = StyleSheet.create({
 	container: {

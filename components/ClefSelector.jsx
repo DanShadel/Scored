@@ -1,10 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
-import {setClefAction} from '../actions/staffActions';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { setClefAction, setRangeAction } from '../actions/staffActions';
 import BassClef from '../assets/bassClef.svg';
 import TrebleClef from '../assets/trebleClef.svg';
-import {getClef} from '../helpers/selectors';
+import { getClef } from '../helpers/selectors';
 
 const ClefSelector = () => {
 	const dispatch = useDispatch();
@@ -12,16 +12,36 @@ const ClefSelector = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.buttonRow}>
-				<TouchableOpacity style={clef === 'bass' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('bass'))}>
+				<TouchableOpacity style={clef === 'bass' ? styles.buttonSelected : styles.button} onPress={() => {
+					dispatch(setRangeAction(3))
+					dispatch(setClefAction('bass'))
+				}}>
 					<BassClef width={'28'} height={'28'} />
 				</TouchableOpacity>
-				<TouchableOpacity style={clef === 'treble' ? styles.buttonSelected : styles.button} onPress={() => dispatch(setClefAction('treble'))}>
+				<TouchableOpacity style={clef === 'treble' ? styles.buttonSelected : styles.button} onPress={() => {
+					dispatch(setRangeAction(4))
+					dispatch(setClefAction('treble'))
+
+				}}>
 					<TrebleClef width={'32'} height={'48'} />
 				</TouchableOpacity>
 			</View>
 		</View >
 	);
 };
+
+const onPress = (clef) => {
+
+	// normalize range for new clef
+	if (clef === 'treble') {
+		dispatch(setRangeAction('4'))
+	} else if (clef === 'bass') {
+		dispatch(setRangeAction('3'))
+	}
+
+	// set new clef
+	dispatch(setClefAction(clef))
+}
 
 
 const styles = StyleSheet.create({
@@ -46,7 +66,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-evenly',
 		alignItems: 'center'
 	},
-	text: {fontSize: 24},
+	text: { fontSize: 24 },
 	buttonSelected: {
 		justifyContent: 'center',
 		alignItems: 'center',

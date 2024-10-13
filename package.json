@@ -28,7 +28,9 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.0",
     "standalone-vexflow-context": "^0.1.1",
-    "tonal": "^4.8.0"
+    "tonal": "^4.8.0",
+    "expo-font": "~11.0.1",
+    "expo-splash-screen": "~0.17.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

@@ -5,7 +5,7 @@ import Staff from './Staff';
 const IndexItem = ({ label, clef, notes, beats, keySignature }) => {
 	return (
 		<View style={styles.container}>
-			<Text style={styles.text}>{label}</Text>
+			<Text style={styles.text}>{label + '  '}</Text>
 			<View style={styles.staff}><Staff notes={notes} clef={clef} beats={beats} keySignature={keySignature} /></View>
 		</View>
 	);
@@ -13,8 +13,8 @@ const IndexItem = ({ label, clef, notes, beats, keySignature }) => {
 
 const styles = StyleSheet.create({
 	container: {
-		width: Dimensions.get('window').width,
-		justifyContent: 'space-around',
+		// width: Dimensions.get('window').width,
+		justifyContent: 'space-evenly',
 		alignItems: 'center',
 		flexDirection: 'row',
 		marginBottom: 16,
@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
 		fontSize: 24,
 		fontWeight: 'bold',
 		marginTop: 20,
+		fontFamily: 'Darwin'
 	},
 	staff: { height: 100 }
 });

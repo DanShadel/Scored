@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 		backgroundColor: colors.paperWhite,
 	},
 
-	text: { fontSize: 24 },
+	text: { fontSize: 24, fontFamily: 'Darwin' },
 
 	containerDisabled: {
 		flex: 1,
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
 	textDisabled: {
 		fontSize: 24,
 		color: 'rgba(30,30,30,.5)',
+		fontFamily: 'Darwin'
 	}
 
 });
