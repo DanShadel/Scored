@@ -5,7 +5,7 @@ import Flat from '../assets/flat.svg';
 import Sharp from '../assets/sharp.svg';
 import Natural from '../assets/natural.svg';
 import {getAccidental} from '../helpers/selectors';
-import {setAccidenalAction} from '../actions/staveActions';
+import {setAccidenalAction} from '../actions/staffActions';
 
 const AccidentalSelector = () => {
 	const dispatch = useDispatch();

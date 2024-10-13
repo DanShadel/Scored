@@ -18,13 +18,15 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.danshadel.Scored"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.danshadel.Scored"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -44,6 +46,11 @@
         "wasm",
         "svg"
       ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee3d172b-f214-414a-a89e-81fb5e64761c"
+      }
     }
   }
 }

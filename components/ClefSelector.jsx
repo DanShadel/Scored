@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setClefAction} from '../actions/staveActions';
+import {setClefAction} from '../actions/staffActions';
 import BassClef from '../assets/bassClef.svg';
 import TrebleClef from '../assets/trebleClef.svg';
 import {getClef} from '../helpers/selectors';

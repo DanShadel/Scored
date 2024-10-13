@@ -4,7 +4,7 @@ import { getNameByTempo } from '../constants/musicConstants';
 import { Slider } from '@miblanchard/react-native-slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTempo } from '../helpers/selectors';
-import { setTempoAction } from '../actions/staveActions';
+import { setTempoAction } from '../actions/staffActions';
 
 const Metronome = () => {
     const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {setRangeAction} from '../actions/staveActions';
+import {setRangeAction} from '../actions/staffActions';
 import {getRange} from '../helpers/selectors';
 
 
