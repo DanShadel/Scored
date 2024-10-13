@@ -53,7 +53,7 @@ const Question = ({ navigation }) => {
 
 		for (let i = 0; i < 3; i++) {
 			let nextAnswer = pickOne(Scale.get('B chromatic').notes);
-			while (nextAnswer === correctAnswer) {
+			while (nextAnswer === correctAnswer || answers.includes(nextAnswer)) {
 				nextAnswer = pickOne(Scale.get('B chromatic').notes);
 			}
 			answers.push(nextAnswer)
@@ -120,15 +120,17 @@ const Question = ({ navigation }) => {
 					</View>
 				</View>
 
-				{displayAnswer ?
-					<View style={styles.rowContainer}>
-						<TitleButton title="New Note" onPress={() => generateNote()} />
-						<TitleButton title="New Chord" onPress={() => generateChord()} />
-					</View>
-					:
-					<View>
-					</View>
-				}
+				<View style={styles.rowContainer}>
+					{displayAnswer ?
+						<>
+							<TitleButton title="New Note" onPress={() => generateNote()} />
+							<TitleButton title="New Chord" onPress={() => generateChord()} />
+						</>
+						:
+						<View>
+						</View>
+					}
+				</View>
 			</View>
 		</View >
 	);
@@ -149,6 +151,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		color: 'black',
+		fontFamily: 'Darwin'
 	},
 	bottomContainer: {
 		flex: 5,
